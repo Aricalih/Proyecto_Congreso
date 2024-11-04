@@ -1,0 +1,155 @@
+---
+title: "Data Science R Basics Edx"
+output: html_document
+date: "2024-10-25"
+---
+
+Instalando paquetes:
+```{r}
+library(tidyverse)
+library(dslabs)
+```
+
+Cargando la data
+```{r}
+data("murders")
+```
+
+Grafico que muestre totales de asesinatos vs totales de poblacion por estado
+```{r}
+murders %>% 
+  ggplot(aes(population, total, label = abb, color = region)) +
+  geom_label()
+```
+
+
+
+```{r}
+# assigning values to variables
+a <-2
+b <-3
+c <- -2
+
+# solving the quadratic equation (sqrt) calcula la raiz cuadrada.
+(-b + sqrt(b^2 - 4*a*c))/(2*a)
+(-b - sqrt(b^2 - 4*a*c))/(2*a)
+```
+
+##Es importante recordar que las funciones se evaluan desde el interior al exterior:
+```{r}
+log(1) #1 es el argumento
+log(exp(1)) #exponente sera el primer argumente y luego el log
+```
+
+Para ver todos los conjuntos de datos disponibles que tiene R:
+```{r}
+data("murders")
+```
+
+```{r}
+class(murders)
+```
+
+```{r}
+str(murders)
+```
+```{r}
+head(murders)
+```
+```{r}
+murders$population
+```
+
+```{r}
+pop <- murders$population
+length(pop)
+class(pop)
+```
+Character vectors: Si escribo a y asigno 1. Entonces si escribo a en R, me devolvera un 1.
+Pero, si quiero trabajar con una cadena de caracteres a, necesito usar comillas.
+```{r}
+a <- 1
+a
+"a"
+```
+
+```{r}
+class(murders$state)
+```
+
+Logical Vector:
+```{r}
+z <- 3 == 2 # == is a relational operator, diferente from = that will assign 2 to 3, and give us an error
+z
+class(z)
+```
+
+```{r}
+class(murders$region) # factors are useful to restoring categorical data. Regions are categorical, there's four categories, that you can see with the function levels, Factors creates some confusion because can be taken as characters
+
+levels(murders$region)
+```
+
+Factors creates some confusion because can be taken as characters
+
+##Vectors
+En un marco de datos como el de "murders" each column is a vector. One way to create vectors is by using the function "c" wich means concatenate (concatenar)
+```{r}
+codes <- c(350,222,223)
+class(codes)
+```
+We use "" when it's a character
+```{r}
+country <- c("italy","canada","egypt") 
+```
+
+We can also concatenate every country wich his code
+```{r}
+codes <- c(italy=350, canada=222, egypt=223) #You can use "" to define the names but is exactly the same as this function
+codes
+```
+
+Another function that do the same as before to concatenate countries and codes:
+```{r}
+names(codes) <- country
+codes
+```
+
+## Function SEQ
+```{r}
+seq(1,10) #seq mean sequence, the first argument defines the start and the second the end of the sequence. The third arguments (1,10,1) defines the jump of the sequence
+seq(1:10) #we use : if we want integers
+```
+
+## Subseting 
+We use [] to access elements of a vector
+```{r}
+codes[2]
+```
+We can get more than an entrande by using
+```{r}
+codes[c(1,2)]#Now we get the first and second elements
+codes[c(1:3)] #Can get from 1 to 3
+```
+
+```{r}
+codes["canada"]
+codes[c("canada","egypt")]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
