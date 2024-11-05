@@ -41,7 +41,7 @@ log(1) #1 es el argumento
 log(exp(1)) #exponente sera el primer argumente y luego el log
 ```
 
-Para ver todos los conjuntos de datos disponibles que tiene R:
+Para ver todos los conjuntos de datos disponibles que tiene R data():
 ```{r}
 data("murders")
 ```
@@ -137,15 +137,69 @@ codes["canada"]
 codes[c("canada","egypt")]
 ```
 
+## Vector Coercion
+
+It's an attempt of R to be flexible with the data. When an entrance doesn't work R try to guess what we are trying to do before give us an error.
+But this also can make some confussion. 
 
 
+```{r}
+x <- c(1,"Canada",3)
+x
+class(x)
+```
+Here R has converted 1 and 3 in Character, because of "Canada".
+
+You can converted numbers to characters with the functions as.character:
+```{r}
+x <- 1:5 #numbers
+y <- as.character(x)
+y
+```
+
+```{r}
+as.numeric(y)
+```
+
+##NA
+Missing data is really comun (Not available): For example
+```{r}
+x <- c("1","b","3")
+class(x)
+```
+```{r}
+as.numeric(x)
+```
+
+R doesn't know what to do, that's why instead of give us an error, put "b" as an NA. 
 
 
+##Sorting
+Sort the vector in increasing order
+```{r}
+sort(murders$total)
+```
 
+Order, returns the indices that sort the vector parameter
+```{r}
+x <- c(31, 4, 15, 92, 65)
+x
+```
+```{r}
+sort(x)
+```
+```{r}
+index <- order(x)
+x[index]
+```
 
-
-
-
+Again
+```{r}
+x
+```
+```{r}
+order(x) #this is the index that puts the vector x in order
+```
 
 
 
