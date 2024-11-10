@@ -1,21 +1,21 @@
 ---
-title: "Data Science R Basics Edx"
+title: "Data Science R Basics Edx - Ariadnita la huerfanita"
 output: html_document
 date: "2024-10-25"
 ---
 
-Instalando paquetes:
+Installing packages:
 ```{r}
 library(tidyverse)
 library(dslabs)
 ```
 
-Cargando la data
+Importing data
 ```{r}
 data("murders")
 ```
 
-Grafico que muestre totales de asesinatos vs totales de poblacion por estado
+Graphic of the murders and population
 ```{r}
 murders %>% 
   ggplot(aes(population, total, label = abb, color = region)) +
@@ -35,7 +35,7 @@ c <- -2
 (-b - sqrt(b^2 - 4*a*c))/(2*a)
 ```
 
-##Es importante recordar que las funciones se evaluan desde el interior al exterior:
+##It's important to remember that the functions are evaluated from in to the outside: 
 ```{r}
 log(1) #1 es el argumento
 log(exp(1)) #exponente sera el primer argumente y luego el log
@@ -200,6 +200,85 @@ x
 ```{r}
 order(x) #this is the index that puts the vector x in order
 ```
+
+##SORTING
+
+```{r}
+
+sort(x)    # puts elements in order
+
+index <- order(x)    # returns index that will put x in order
+x[index]    # rearranging by this index puts elements in order
+order(x)
+
+murders$state[1:10]
+murders$abb[1:10]
+
+index <- order(murders$total)
+murders$abb[index]    # order abbreviations by total murders
+
+max(murders$total)    # highest number of total murders
+i_max <- which.max(murders$total)    # which max give us the position of the highest number
+murders$state[i_max]    # state name with highest number of total murders
+
+x <- c(31, 4, 15, 92, 65)
+x
+rank(x)    # returns ranks (smallest to largest)
+```
+
+## Vector Arithmetic
+```{r}
+murders$state[which.max(murders$population)]
+max(murders$population)
+```
+
+California is the state with the largest population, that's why is unfair to comparate to other states by using the murders indicator
+
+What we have to calculate is the murders per capita
+
+```{r}
+heights <- c(69,62,66,70,70,73,67,73,67,70)
+heights * 2.54 # to convert the value to centimeters
+```
+
+Para calcular la tasa de homicidios por cada 100 000, se tiene que dividir el total de homicidios entre la poblacion del mismo estado, y multiplicarlo por la tasa de 100 000 personas: 
+
+```{r}
+murders_rate <- murders$total/murders$population*100000
+```
+
+```{r}
+murders$state[order(murders_rate, decreasing=TRUE)]
+```
+
+##Indexing
+
+```{r}
+index <- murders_rate < 0.71
+index <- murders_rate <= 0.71
+index
+```
+
+```{r}
+murders$state[index]
+sum(index)
+```
+
+Now we want a state that is in the montains and the rate is less than 1 x 100 000 person
+
+```{r}
+west <- murders$region == "West"
+safe <- murders_rate <= 1
+
+
+index = west & safe
+
+index
+
+murders$state[index]
+```
+
+
 
 
 
