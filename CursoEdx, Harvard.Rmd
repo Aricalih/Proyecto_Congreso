@@ -277,11 +277,29 @@ index
 
 murders$state[index]
 ```
+ 
+## WHICH
+ The index of which help us to get the true values of a sentence.
+ 
+```{r}
+index <- which(murders$state == "Massachusetts")
+index
+```
 
+```{r}
+murders_rate[index]
+```
 
+##MATCH
 
+```{r}
+index <- match(c("New York","Florida","Texas"),murders$state)
+index
+murders$state[index]
+murders_rate[index]
+```
 
-
+%>% 
 
 
 
